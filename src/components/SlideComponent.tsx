@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
+import remarkGfm from "remark-gfm";
 
 const SlideComponent = ({
   children,
@@ -9,6 +10,7 @@ const SlideComponent = ({
   children: ReactNode;
   markdownDir: string;
 }) => {
+  const [hide, setHide] = useState(false);
   const [markdown, setMarkdown] = useState("");
   useEffect(() => {
     fetch(markdownDir)
@@ -18,15 +20,30 @@ const SlideComponent = ({
 
   return (
     <div className="h-full w-full flex justify-center items-center relative">
-      {/* <h1 className="absolute top-4 text-3xl">Title</h1> */}
-      <div className="h-full w-full grid md:grid-cols-2 justify-around">
+      {/* <h1 className="absolute top-4 text-3xl" onClick={() => setHide(!hide)}>
+        Show
+      </h1> */}
+      <div
+        className={`h-full w-full ${
+          !hide ? "grid md:grid-cols-2" : "grid grid-cols-1"
+        } justify-around`}
+      >
         <div className="h-full w-full flex items-center justify-center">
           {children}
         </div>
-        <div className="h-full w-full border p-4">
-          <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
-            {markdown}
-          </ReactMarkdown>
+        <div
+          className={`max-h-screen pb-24 w-full border p-4 overflow-y-auto ${
+            hide && "hidden"
+          }`}
+        >
+          <div className="markdown-body">
+            <ReactMarkdown
+              rehypePlugins={[rehypeHighlight]}
+              remarkPlugins={[remarkGfm]}
+            >
+              {markdown}
+            </ReactMarkdown>
+          </div>
         </div>
       </div>
     </div>

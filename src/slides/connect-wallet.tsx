@@ -3,7 +3,7 @@ import { NearWalletConnector } from "@/components/WalletConnectButton";
 
 const Slide = () => {
   return (
-    <SlideComponent markdownDir="/slides/_0.md">
+    <SlideComponent markdownDir="/slides/connect-wallet.md">
       <NearWalletConnector />
     </SlideComponent>
   );

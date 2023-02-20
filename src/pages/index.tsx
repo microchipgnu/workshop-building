@@ -1,6 +1,9 @@
 import { NearWalletConnector } from "@/components/WalletConnectButton";
-import _0 from "@/slides/_0";
-import _1 from "@/slides/_1";
+import ConnectWallet from "@/slides/connect-wallet";
+import DeployContract from "@/slides/deploy-contract";
+import ListMarketplace from "@/slides/list-marketplace";
+import MintToken from "@/slides/mint-token";
+import GettingStarted from "@/slides/getting-started";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -8,33 +11,37 @@ import { useState } from "react";
 
 const slides = [
   {
-    title: "Connect account",
-    children: () => <_0 />,
+    title: "Getting Started",
+    children: () => <GettingStarted />,
+  },
+  {
+    title: "Connect Wallet",
+    children: () => <ConnectWallet />,
   },
   {
     title: "Deploy Token Contract",
-    children: () => <_1 />,
+    children: () => <DeployContract />,
   },
   {
     title: "Mint token",
-    children: () => <_0 />,
-  },
-  {
-    title: "Add other minters", // Show QR Code?
-    children: () => <_0 />,
+    children: () => <MintToken />,
   },
   {
     title: "List in marketplace",
-    children: () => <_0 />,
+    children: () => <ListMarketplace />,
   },
-  {
-    title: "Fetch token data",
-    children: () => <_0 />,
-  },
-  {
-    title: "Send link (get someone to buy it with AD)",
-    children: () => <_0 />,
-  },
+  // {
+  //   title: "Fetch token data",
+  //   children: () => <_0 />,
+  // },
+  // {
+  //   title: "Send link (get someone to buy it with AD)",
+  //   children: () => <_0 />,
+  // },
+  // {
+  //   title: "Add other minters", // Show QR Code?
+  //   children: () => <_0 />,
+  // },
 ];
 
 const Index = () => {
@@ -55,6 +62,11 @@ const Index = () => {
   const _index = Number(routerIndex) || index;
   return (
     <div className="h-screen min-w-screen p-4 relative">
+      {/* <div className="absolute top-0 left-0">
+        <div className="m-4 text-sm ">
+          <span className="text-orange-500">{slides[_index]?.title}</span>
+        </div>
+      </div> */}
       {slides[_index].children()}
 
       <div className="absolute bottom-0 right-0">
@@ -71,7 +83,7 @@ const Index = () => {
           </button>
           <div className={`px-2 w-36 h-12 flex items-center justify-center`}>
             <p className="text-xs text-orange-500 font-bold text-center truncate">
-              <span>{slides[_index]?.title}</span>
+              <span>{slides[_index]?.title} </span>
             </p>
           </div>
           <button

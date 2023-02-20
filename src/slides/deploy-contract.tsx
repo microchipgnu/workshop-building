@@ -1,11 +1,15 @@
 import SlideComponent from "@/components/SlideComponent";
 import { useWallet } from "@mintbase-js/react";
 import { deployContract, execute } from "@mintbase-js/sdk";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Slide = () => {
   const [name, setName] = useState<string | null>(null);
   const { selector, activeAccountId } = useWallet();
+
+  useEffect(() => {
+    handleGenerateName();
+  }, []);
 
   const handleGenerateName = () => {
     const name = (Math.random() + 1).toString(16).substring(4);
@@ -18,8 +22,7 @@ const Slide = () => {
 
     const wallet = await selector.wallet();
 
-    await execute(
-      { wallet },
+    console.log(
       deployContract({
         name: name,
         ownerId: activeAccountId,
@@ -28,28 +31,48 @@ const Slide = () => {
         },
       })
     );
+
+    await execute(
+      { wallet },
+      {
+        ...deployContract({
+          name: name,
+          ownerId: activeAccountId,
+          metadata: {
+            symbol: "XXX",
+          },
+        }),
+        deposit: "6500000000000000000000000",
+      }
+    );
   };
 
   return (
-    <SlideComponent markdownDir="/slides/_1.md">
-      <div className="flex gap-4">
-        {!name && (
+    <SlideComponent markdownDir="/slides/deploy-contract.md">
+      <div className="flex flex-col gap-4 items-center">
+        <div className="flex gap-2">
+          <p>
+            <span className="underline">{name}</span>.mintspace2.testnet
+          </p>
+        </div>
+
+        <div className="flex gap-2">
           <button
+            className="border px-4 py-2 rounded"
             onClick={handleGenerateName}
-            className="bg-black text-white px-4 py-2 rounded"
           >
-            Generate name
+            Re-generate
           </button>
-        )}
-        {name && (
+
           <button
             onClick={handleDeployContract}
             className="bg-black text-white px-4 py-2 rounded"
             disabled={!name}
           >
-            Deploy {name}
+            <span className="font-bold text-orange-400">Deploy</span>{" "}
+            <span>Token Contract</span>
           </button>
-        )}
+        </div>
       </div>
     </SlideComponent>
   );
