@@ -2,8 +2,10 @@ import { NearWalletConnector } from "@/components/WalletConnectButton";
 import ConnectWallet from "@/slides/connect-wallet";
 import DeployContract from "@/slides/deploy-contract";
 import ListMarketplace from "@/slides/list-marketplace";
+import FetchDataMarketplace from "@/slides/fetch-data-marketplace";
 import MintToken from "@/slides/mint-token";
 import GettingStarted from "@/slides/getting-started";
+import TheEnd from "@/slides/the-end";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -29,6 +31,14 @@ const slides = [
   {
     title: "List in marketplace",
     children: () => <ListMarketplace />,
+  },
+  {
+    title: "Fetch Data (Marketplace)",
+    children: () => <FetchDataMarketplace />,
+  },
+  {
+    title: "The End",
+    children: () => <TheEnd />,
   },
   // {
   //   title: "Fetch token data",
@@ -60,8 +70,18 @@ const Index = () => {
   };
 
   const _index = Number(routerIndex) || index;
+
+  const progressPercentage = Math.round(((_index + 1) / slides.length) * 100);
   return (
-    <div className="h-screen min-w-screen p-4 relative">
+    <div className="h-screen min-w-screen relative">
+      <div className="absolute top-0 h-1 bg-slate-200 w-full">
+        <div
+          className={`h-1 bg-orange-400`}
+          style={{
+            width: `${progressPercentage}%`,
+          }}
+        ></div>
+      </div>
       {/* <div className="absolute top-0 left-0">
         <div className="m-4 text-sm ">
           <span className="text-orange-500">{slides[_index]?.title}</span>

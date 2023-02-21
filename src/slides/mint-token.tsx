@@ -17,6 +17,7 @@ const Slide = () => {
       }[]
     | undefined
   >(undefined);
+  const [selectedStore, setSelectedStore] = useState(stores?.[0].id);
 
   const canMint = !loading || !!stores || !!file || !!isConnected;
 
@@ -26,6 +27,7 @@ const Slide = () => {
     const stores = data?.nft_contracts;
 
     setStores(stores);
+    setSelectedStore(stores?.[0].id)
   };
 
   useEffect(() => {
@@ -34,6 +36,10 @@ const Slide = () => {
 
   const handleChange = (e: any) => {
     setFile(e.target.files[0]);
+  };
+
+  const handleChangeStore = (e: any) => {
+    setSelectedStore(e.target.value);
   };
 
   const handleSubmit = async (e: any) => {
@@ -52,13 +58,10 @@ const Slide = () => {
     setReference(uploadResult.id);
     setLoading(false);
 
-    if (!reference) return;
-
-    handleMintToken();
+    handleMintToken(uploadResult.id);
   };
 
-  const handleMintToken = async () => {
-    if (!reference) return;
+  const handleMintToken = async (reference: string) => {
     if (!activeAccountId) return;
 
     const wallet = await selector.wallet();
@@ -69,7 +72,7 @@ const Slide = () => {
         ownerId: activeAccountId,
         metadata: { reference: reference },
         noMedia: true,
-        contractAddress: "",
+        contractAddress: selectedStore,
       })
     );
   };
@@ -78,7 +81,7 @@ const Slide = () => {
     <SlideComponent markdownDir="/slides/mint-token.md">
       <div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <select className="border p-2 rounded">
+          <select className="border p-2 rounded" value={selectedStore} onChange={handleChangeStore}>
             {stores?.map((store) => {
               return (
                 <option key={store.id} value={store.id}>
@@ -87,13 +90,17 @@ const Slide = () => {
               );
             })}
           </select>
-          <input type="file" onChange={handleChange} />
+          <input
+            type="file"
+            onChange={handleChange}
+            className="border p-2 rounded"
+          />
           <button
             type="submit"
             className="bg-black text-white px-4 py-2 rounded"
-            disabled={canMint}
+            disabled={false}
           >
-            Mint Token
+            {loading ? "Loading..." : "Mint Token"}
           </button>
         </form>
       </div>

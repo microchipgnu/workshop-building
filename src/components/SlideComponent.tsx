@@ -19,7 +19,7 @@ const SlideComponent = ({
   }, []);
 
   return (
-    <div className="h-full w-full flex justify-center items-center relative">
+    <div className="h-screen w-screen flex justify-center items-center relative p-4">
       {/* <h1 className="absolute top-4 text-3xl" onClick={() => setHide(!hide)}>
         Show
       </h1> */}
@@ -28,7 +28,7 @@ const SlideComponent = ({
           !hide ? "grid md:grid-cols-2" : "grid grid-cols-1"
         } justify-around`}
       >
-        <div className="h-full w-full flex items-center justify-center">
+        <div className="max-h-screen overflow-y-auto w-full flex items-center justify-center">
           {children}
         </div>
         <div
