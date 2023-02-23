@@ -35,17 +35,19 @@ const SlideComponent = ({
           show ? "grid md:grid-cols-2" : "grid grid-cols-1"
         } justify-around`}
       >
+        {show && (
+          <button
+            className="absolute top-1 lg:top-2 bg-white left-1 lg:left-2 border h-8 w-8 rounded-full z-[1000]"
+            onClick={() => setshow(!show)}
+          >
+            X
+          </button>
+        )}
         <div
           className={`max-h-screen pb-36 z-50 w-full border p-4 overflow-y-auto bg-white lg:relative absolute top-0 bottom-0 left-0 right-0 ${
             !show ? "hidden" : "md:block"
           }`}
         >
-          <button
-            className="absolute top-1 lg:top-2 bg-white right-1 lg:right-2 border h-8 w-8 rounded-full"
-            onClick={() => setshow(!show)}
-          >
-            X
-          </button>
           <div className="markdown-body">
             <ReactMarkdown
               rehypePlugins={[rehypeHighlight]}
