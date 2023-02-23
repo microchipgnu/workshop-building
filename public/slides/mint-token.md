@@ -22,14 +22,47 @@ const stores = data?.nft_contracts
 
 ```
 
-## Upload data
+## Upload data to Arweave
 
 We use Arweave at Mintbase
+
+```jsx
+
+import { uploadReference } from "@mintbase-js/storage";
+
+const handleSubmit = async (e: any) => {
+
+    const metadata = {
+        title: "Mintbase Dev Stack Workshop @ETHDenver",
+        media: file // File,
+    };
+
+    const uploadResult = await uploadReference(metadata);
+
+    setReference(uploadResult.id);
+};
+
+
+```
 
 ## Mint contract call
 
 ```jsx
 
-import { useState } from 'react';
+
+const wallet = await selector.wallet();
+
+execute(
+    { wallet },
+    mint({
+        ownerId: activeAccountId,
+        metadata: { reference: reference },
+        noMedia: true,
+        contractAddress: selectedStore,
+    })
+);
+
+
+```
 
 ```

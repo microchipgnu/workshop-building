@@ -74,7 +74,7 @@ const Index = () => {
   const progressPercentage = Math.round(((_index + 1) / slides.length) * 100);
   return (
     <div className="h-screen min-w-screen relative">
-      <div className="absolute top-0 h-1 bg-slate-200 w-full">
+      <div className="absolute top-0 h-1 bg-slate-200 w-full z-50">
         <div
           className={`h-1 bg-orange-400`}
           style={{
@@ -89,16 +89,19 @@ const Index = () => {
       </div> */}
       {slides[_index].children()}
 
-      <div className="absolute bottom-0 right-0">
-        <div className="flex gap-2 m-4 items-center border bg-white p-4">
+      <div className="absolute left-1/2 transform -translate-x-1/2 bottom-0 z-50">
+        <div className="flex gap-2 m-4 items-center border bg-white p-2 lg:p-4">
           <button
-            className={`px-2 rounded border w-36 h-12 ${
+            className={`px-2 rounded-full lg:rounded border w-12 lg:w-36 h-12 ${
               _index === 0 ? "text-gray-200" : "text-black"
             }`}
             onClick={() => handleSetIndex(_index - 1)}
           >
-            <p className="text-xs text-center truncate">
+            <p className="hidden lg:block text-xs text-center truncate">
               <span>{slides[_index - 1]?.title || "-"}</span>
+            </p>
+            <p className="block lg:hidden text-xs text-center">
+              {"<"}
             </p>
           </button>
           <div className={`px-2 w-36 h-12 flex items-center justify-center`}>
@@ -107,13 +110,16 @@ const Index = () => {
             </p>
           </div>
           <button
-            className={`px-2 rounded border w-36 h-12 ${
+            className={`px-2 lg:rounded rounded-full border w-12 lg:w-36 h-12 ${
               _index === slides.length - 1 ? "text-gray-200" : "text-black"
             }`}
             onClick={() => handleSetIndex(_index + 1)}
           >
-            <p className="text-xs text-center truncate">
+            <p className="hidden lg:block text-xs text-center truncate">
               <span>{slides[_index + 1]?.title || "-"}</span>
+            </p>
+            <p className="block lg:hidden text-xs text-center">
+              {">"}
             </p>
           </button>
         </div>
