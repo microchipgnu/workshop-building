@@ -58,7 +58,7 @@ const SlideComponent = ({
           </div>
         </div>
         <div
-          className={`max-h-screen overflow-y-auto w-full flex items-center justify-center`}
+          className={`max-h-screen overflow-y-auto w-full flex items-center justify-center pb-[66px]`}
         >
           {children}
         </div>
