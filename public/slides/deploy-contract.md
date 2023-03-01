@@ -1,12 +1,30 @@
 # Deploying a Non-fungible Token Contract
 
+Packages: `@mintbase-js/react`, `@mintbase-js/sdk`
+
+
 ## Permissions
 
-Mintbase token contracts use two roles for **Owner** and **Minter**.
+Mintbase token contracts Role-based access control for rights to minting and changing the contract policy.
+
+There are two main roles: **Owner** and **Minter**.
 
 The Owner can add/remove minters and transfer contract ownership to other account.
 
 Only the owner and minters can mint tokens on the contract.
+
+## Cost
+
+On NEAR 100KB of data are equivalent to 1N in [storage staking](https://docs.near.org/concepts/storage/storage-staking).
+
+
+```
+
+Rule of thumb: 100KB ~= 1N
+
+```
+
+The Mintbase token contract uses 500 KB (5N). Each token takes about 0.25KB of data => every 1N allows to mint up to 400 tokens.
 
 ## Example
 
@@ -48,10 +66,3 @@ export const DeployContractComponent = () => {
 
 ```
 
-## Cost
-
-6.5N 
-
-Rule of thumb: 100KB ~= 1N
-
-MB Contract: 500KB + Extra storage (600 tokens)

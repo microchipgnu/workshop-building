@@ -1,6 +1,6 @@
 # Connect Wallet
 
-For those of you who want the opportunity to win $1000, use mainnet.
+Packages: `@mintbase-js/react`
 
 ## Setting up the provider
 
@@ -9,17 +9,15 @@ Firstly, head over to `src/pages/_app.tsx`
 
 ```jsx
 
-import { WalletContextProvider } from "@mintbase-js/react";
-import "@near-wallet-selector/modal-ui/styles.css";
+import { WalletContextProvider } from '@mintbase-js/react'
+import '@near-wallet-selector/modal-ui/styles.css'
 
-// ...
-
-export default function App({ Component, pageProps }: AppProps) {
+export default function App {
   return (
     <WalletContextProvider>
       <Component {...pageProps} />
     </WalletContextProvider>
-  );
+  )
 }
 
 ```

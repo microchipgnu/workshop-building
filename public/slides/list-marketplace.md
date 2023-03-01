@@ -1,5 +1,7 @@
 # List Token in the Marketplace
 
+Packages: `@mintbase-js/react`, `@mintbase-js/sdk`, `@mintbase-js/data`
+
 
 ## Fetch user owned tokens
 
