@@ -1,15 +1,13 @@
 # Mint a Non-fungible Token
 
-Creating a token in the contract
+Packages: `@mintbase-js/react`, `@mintbase-js/sdk`, `@mintbase-js/storage`, `@mintbase-js/data`
 
-Once you have a 
 
 ## Fetch user owned stores
 
 Import `@mintbase-js/data`
 
 ```jsx
-
 import { ownedStores } from "@mintbase-js/data";
 
 // ...
@@ -27,7 +25,6 @@ const stores = data?.nft_contracts
 We use Arweave at Mintbase
 
 ```jsx
-
 import { uploadReference } from "@mintbase-js/storage";
 
 const handleSubmit = async (e: any) => {
@@ -48,8 +45,6 @@ const handleSubmit = async (e: any) => {
 ## Mint contract call
 
 ```jsx
-
-
 const wallet = await selector.wallet();
 
 execute(
@@ -61,8 +56,3 @@ execute(
         contractAddress: selectedStore,
     })
 );
-
-
-```
-
-```
