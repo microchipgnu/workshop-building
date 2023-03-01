@@ -73,7 +73,7 @@ const Index = () => {
 
   const progressPercentage = Math.round(((_index + 1) / slides.length) * 100);
   return (
-    <div className="h-screen min-w-screen relative">
+    <div className="h-full md:h-screen min-w-screen relative">
       <div className="absolute top-0 h-1 bg-slate-200 w-full z-50">
         <div
           className={`h-1 bg-orange-400`}
@@ -89,7 +89,7 @@ const Index = () => {
       </div> */}
       {slides[_index].children()}
 
-      <div className="absolute left-1/2 transform -translate-x-1/2 bottom-0 z-50">
+      <div className="fixed left-1/2 transform -translate-x-1/2 bottom-0 z-50">
         <div className="flex gap-2 m-4 items-center border bg-white p-2 lg:p-4">
           <button
             className={`px-2 rounded-full lg:rounded border w-12 lg:w-36 h-12 ${
