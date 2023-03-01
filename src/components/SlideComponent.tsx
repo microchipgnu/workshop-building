@@ -37,7 +37,7 @@ const SlideComponent = ({
       >
         {show && (
           <button
-            className="absolute top-1 lg:top-2 bg-white left-1 lg:left-2 border h-8 w-8 rounded-full z-[1000]"
+            className="fixed top-1 lg:top-2 bg-white left-1 lg:left-2 border h-8 w-8 rounded-full z-[1000]"
             onClick={() => setshow(!show)}
           >
             X
