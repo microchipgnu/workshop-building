@@ -2,6 +2,7 @@
 
 Packages: `@mintbase-js/react`
 
+
 ## Setting up the provider
 
 Firstly, head over to `src/pages/_app.tsx`

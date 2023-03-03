@@ -10,6 +10,8 @@ const Card = ({
   description,
   minter,
   price,
+  action,
+  actionLabel,
 }: {
   coverImage: string;
   title: string;
@@ -18,6 +20,7 @@ const Card = ({
   minter: string;
   price: string;
   actionLabel?: string;
+  action: () => void;
 }) => {
   return (
     <>
@@ -62,8 +65,11 @@ const Card = ({
             </Link>
           </div>
         </div>
-        <button className="bg-black text-white w-full rounded mt-4 py-1 px-2 text-sm truncate">
-          Buy {price}N
+        <button
+          className="bg-black text-white w-full rounded mt-4 py-1 px-2 text-sm truncate"
+          onClick={action}
+        >
+          {actionLabel}
         </button>
       </div>
     </>

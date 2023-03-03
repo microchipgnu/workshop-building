@@ -4,11 +4,12 @@ import { fetchGraphQl, graphql } from "@mintbase-js/data";
 import { useEffect, useState } from "react";
 import Card from "@/components/Card";
 import { utils } from "near-api-js";
+import { buy, execute } from "@mintbase-js/sdk";
 
 const MARKET_QUERY = `
   query MyQuery {
     listings: mb_views_active_listings(
-      where: {created_at: {_gte: "2023-02-21"}}
+      where: {created_at: {_gte: "2023-03-02"}}
       order_by: {created_at: desc}
     ) {
       currency
@@ -43,6 +44,8 @@ const Slide = () => {
     MarketplaceData | undefined
   >(undefined);
 
+  const { selector } = useWallet();
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -51,6 +54,7 @@ const Slide = () => {
 
   const fetchData = async () => {
     setLoading(true);
+
     const { data, error } = (await fetchGraphQl({ query: MARKET_QUERY })) as {
       data: { listings: MarketplaceData };
       error: any;
@@ -62,7 +66,18 @@ const Slide = () => {
     setLoading(false);
   };
 
-  const handleBuyToken = () => {};
+  const handleBuyToken = async (tokenId: string, price: string) => {
+    const wallet = await selector.wallet();
+
+    await execute(
+      { wallet },
+      buy({
+        tokenId,
+        price,
+        // affiliateAccount: "someAccount"
+      })
+    );
+  };
 
   return (
     <SlideComponent markdownDir="/slides/fetch-data-marketplace.md">
@@ -89,6 +104,8 @@ const Slide = () => {
                 title={""}
                 coverImage={listing.media}
                 isLoading={false}
+                action={() => handleBuyToken(listing.tokenId, priceYocto)}
+                actionLabel={`Buy ${priceNear}N`}
               ></Card>
             </div>
           );

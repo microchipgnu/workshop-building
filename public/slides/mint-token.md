@@ -3,7 +3,7 @@
 Packages: `@mintbase-js/react`, `@mintbase-js/sdk`, `@mintbase-js/storage`, `@mintbase-js/data`
 
 
-## Fetch user owned stores
+## Fetch user owned token contract
 
 Import `@mintbase-js/data`
 
@@ -16,13 +16,11 @@ const { activeAccountId } = useWallet()
 
 const { data, error } = await ownedStores(activeAccountId!)
 
-const stores = data?.nft_contracts
+const tokenContracts = data?.nft_contracts
 
 ```
 
 ## Upload data to Arweave
-
-We use Arweave at Mintbase
 
 ```jsx
 import { uploadReference } from "@mintbase-js/storage";
