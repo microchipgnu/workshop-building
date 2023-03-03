@@ -8,14 +8,14 @@ export const NearWalletConnector = () => {
       <div className="flex justify-center items-center mt-4">
         {!isConnected ? (
           <button
-            onClick={connect}
+            // TODO: add code here
             className="bg-black text-white px-4 py-2 rounded"
           >
             Connect
           </button>
         ) : (
           <button
-            onClick={disconnect}
+            // TODO: add code here
             className="bg-black text-white px-4 py-2 rounded"
           >
             Disconnect{" "}

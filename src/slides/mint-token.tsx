@@ -22,12 +22,12 @@ const Slide = () => {
   const canMint = !loading || !!stores || !!file || !!isConnected;
 
   const handleFetchStores = async () => {
-    const { data, error } = await ownedStores(activeAccountId!);
+    // TODO: add code here
 
-    const stores = data?.nft_contracts;
+    // const stores = data?.nft_contracts;
 
-    setStores(stores);
-    setSelectedStore(stores?.[0].id)
+    // setStores(stores);
+    // setSelectedStore(stores?.[0].id)
   };
 
   useEffect(() => {
@@ -53,12 +53,12 @@ const Slide = () => {
       media: file,
     };
 
-    const uploadResult = await uploadReference(metadata);
+    // TODO: add code here
 
-    setReference(uploadResult.id);
+    // setReference(uploadResult.id);
     setLoading(false);
 
-    handleMintToken(uploadResult.id);
+    // handleMintToken(uploadResult.id);
   };
 
   const handleMintToken = async (reference: string) => {
@@ -66,15 +66,7 @@ const Slide = () => {
 
     const wallet = await selector.wallet();
 
-    execute(
-      { wallet },
-      mint({
-        ownerId: activeAccountId,
-        metadata: { reference: reference },
-        noMedia: true,
-        contractAddress: selectedStore,
-      })
-    );
+    // TODO: add code here
   };
 
   return (

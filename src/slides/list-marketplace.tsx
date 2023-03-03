@@ -9,40 +9,23 @@ const Slide = () => {
   const [tokens, setTokens] = useState<Token[] | undefined | null>(undefined);
   const [loading, setLoading] = useState(false);
 
-
   useEffect(() => {
     fetchOwnedTokens();
   }, [activeAccountId]);
 
   const fetchOwnedTokens = async () => {
-    setLoading(true)
-    const { data: ownedTokensData, error: ownedTokensError } =
-      await ownedTokens(activeAccountId!, { limit: 1 });
+    setLoading(true);
 
-    setTokens(ownedTokensData);
-    setLoading(false)
+    // TODO: add code here
+
+    setLoading(false);
   };
 
   const handleListToken = async () => {
     const token = tokens?.[0];
     const wallet = await selector.wallet();
 
-    const marketAddress = "market-v2-beta.mintspace2.testnet";
-
-    if (!token) return;
-
-    await execute({ wallet }, [
-      depositStorage({
-        listAmount: 1,
-        marketAddress: marketAddress,
-      }),
-      list({
-        contractAddress: token.contractId,
-        marketAddress: marketAddress,
-        tokenId: token.tokenId,
-        price: `5${"0".repeat(23)}`,
-      }),
-    ]);
+    // TODO: add code here
   };
 
   return (
@@ -79,7 +62,7 @@ const Slide = () => {
               <div>
                 <button
                   className="border rounded px-4 py-2 text-white bg-black"
-                  onClick={handleListToken}
+                  // TODO: add code here
                 >
                   <span className="font-bold text-orange-500">List</span> for
                   0.5N

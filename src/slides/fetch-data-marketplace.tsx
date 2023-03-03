@@ -55,28 +55,18 @@ const Slide = () => {
   const fetchData = async () => {
     setLoading(true);
 
-    const { data, error } = (await fetchGraphQl({ query: MARKET_QUERY })) as {
-      data: { listings: MarketplaceData };
-      error: any;
-    };
+    // TODO: add code here
 
-    if (!data || !data.listings || error) return;
+    // if (!data || !data.listings || error) return;
 
-    setMarketplaceData(data?.listings);
+    // setMarketplaceData(data?.listings);
     setLoading(false);
   };
 
   const handleBuyToken = async (tokenId: string, price: string) => {
     const wallet = await selector.wallet();
 
-    await execute(
-      { wallet },
-      buy({
-        tokenId,
-        price,
-        // affiliateAccount: "someAccount"
-      })
-    );
+    // TODO: add code here
   };
 
   return (

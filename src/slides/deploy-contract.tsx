@@ -22,29 +22,7 @@ const Slide = () => {
 
     const wallet = await selector.wallet();
 
-    console.log(
-      deployContract({
-        name: name,
-        ownerId: activeAccountId,
-        metadata: {
-          symbol: "XXX",
-        },
-      })
-    );
-
-    await execute(
-      { wallet },
-      {
-        ...deployContract({
-          name: name,
-          ownerId: activeAccountId,
-          metadata: {
-            symbol: "XXX",
-          },
-        }),
-        deposit: "6500000000000000000000000",
-      }
-    );
+    // TODO: add code here
   };
 
   return (
@@ -65,7 +43,7 @@ const Slide = () => {
           </button>
 
           <button
-            onClick={handleDeployContract}
+            // TODO: add code here
             className="bg-black text-white px-4 py-2 rounded"
             disabled={!name}
           >
