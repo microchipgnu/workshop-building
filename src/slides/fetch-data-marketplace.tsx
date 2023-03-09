@@ -66,7 +66,7 @@ const Slide = () => {
     setLoading(false);
   };
 
-  const handleBuyToken = async (tokenId: string, price: string) => {
+  const handleBuyToken = async (nftContractId: string, tokenId: string, price: string) => {
     const wallet = await selector.wallet();
 
     await execute(
@@ -74,6 +74,7 @@ const Slide = () => {
       buy({
         tokenId,
         price,
+        contractAddress: nftContractId
         // affiliateAccount: "someAccount"
       })
     );
@@ -104,7 +105,7 @@ const Slide = () => {
                 title={""}
                 coverImage={listing.media}
                 isLoading={false}
-                action={() => handleBuyToken(listing.tokenId, priceYocto)}
+                action={() => handleBuyToken(listing.nftContractId, listing.tokenId, priceYocto)}
                 actionLabel={`Buy ${priceNear}N`}
               ></Card>
             </div>
