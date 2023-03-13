@@ -1,6 +1,6 @@
 import SlideComponent from "@/components/SlideComponent";
 import { useWallet } from "@mintbase-js/react";
-import { execute, mint } from "@mintbase-js/sdk";
+import { execute, mbjs, mint } from "@mintbase-js/sdk";
 import { uploadReference } from "@mintbase-js/storage";
 import { ownedStores } from "@mintbase-js/data";
 import { useEffect, useMemo, useState } from "react";
@@ -17,7 +17,7 @@ const Slide = () => {
       }[]
     | undefined
   >(undefined);
-  const [selectedStore, setSelectedStore] = useState(stores?.[0].id);
+  const [selectedStore, setSelectedStore] = useState(stores?.[0]?.id);
 
   const canMint = !loading || !!stores || !!file || !!isConnected;
 
@@ -27,7 +27,7 @@ const Slide = () => {
     const stores = data?.nft_contracts;
 
     setStores(stores);
-    setSelectedStore(stores?.[0].id)
+    setSelectedStore(stores?.[0]?.id)
   };
 
   useEffect(() => {
@@ -53,6 +53,8 @@ const Slide = () => {
       media: file,
     };
 
+    console.log(mbjs)
+
     const uploadResult = await uploadReference(metadata);
 
     setReference(uploadResult.id);
@@ -73,6 +75,7 @@ const Slide = () => {
         metadata: { reference: reference },
         noMedia: true,
         contractAddress: selectedStore,
+        amount: 10
       })
     );
   };
